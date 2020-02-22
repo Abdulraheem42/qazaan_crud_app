@@ -14,7 +14,7 @@ const myReducer = (state = initState, action )=> {
         case 'POST_DATA':
             return{
                 ...state,
-                blogs: [...state.blogs,  action.payload]
+                blogs: [action.payload, ...state.blogs]
             };
 
         // case 'DEL_DATA':

@@ -23,7 +23,7 @@ class DetailBlog extends Component {
                                 <span className='card-title '><h4>{blog.title}</h4></span>
                                 <p>{blog.body}</p>
                             </div>
-                            <div className='card-action'>
+                            <div className='card-action blue'>
                                 <span>User: {blog.userId}</span>
                                 <NavLink to='/'><button className='btn-small black right'>Go To home</button></NavLink>
                             </div>

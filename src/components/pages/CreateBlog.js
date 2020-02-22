@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
+import '../../App.css'
 import { connect } from 'react-redux';
 import { postData, updatePostData } from "../../store/actions";
 
@@ -16,12 +17,12 @@ class CreateBlog extends Component {
     }
 
     componentDidMount() {
-        const { doc_id } = this.state
-        if(doc_id){
-            const { data } = this.props
-            const edit = data.find(blog => {
-                return blog.id == doc_id
-            })
+        const { data } = this.props;
+        const doc_id = localStorage.getItem('doc_id');
+        const edit = data.find(blog => {
+            return blog.id == doc_id
+        })
+        if(edit !== undefined){
             this.setState({
                 isEditing: false,
                 title: edit.title,
@@ -62,12 +63,12 @@ class CreateBlog extends Component {
         this.setState({
             title: '',
             body: '',
+            isEditing: true
         });
-        // this.props.history.push('/')
+        this.props.history.push('/')
     }
 
     render() {
-        console.log(this.props.data, 'this.props.data')
         const { isEditing } = this.state
         return (
             <div className='container'>
@@ -84,7 +85,7 @@ class CreateBlog extends Component {
                                    onChange={this.handleChange.bind(this)} />
                         </div>
                         <div className='col l12 s12 input-field'>
-                                <textarea id="textarea2" className="materialize-textarea"
+                                <textarea id="textarea1" className="materialize-textarea"
                                           data-length="120"
                                           required
                                           value={this.state.body}
@@ -92,7 +93,7 @@ class CreateBlog extends Component {
                                           onChange={this.handleChange.bind(this)}
                                 >
                                 </textarea>
-                            <label htmlFor="textarea2">Textarea</label>
+                            <label htmlFor="textarea1">Textarea</label>
                         </div>
                         <div className='col l12 s12 input-field center'>
                             {isEditing ?

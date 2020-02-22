@@ -13,7 +13,6 @@ class BlogList extends Component {
     handleEdit(id){
         localStorage.setItem('doc_id',  id)
         this.props.history.push('/createblog')
-        console.log(this.props, 'this.props in handle edit')
     }
 
     render() {
@@ -29,7 +28,7 @@ class BlogList extends Component {
                                         <span className="card-title"><h4>{res.title}</h4></span>
                                         <p>{res.body}</p>
                                     </div>
-                                    <div className="card-action">
+                                    <div className="card-action blue">
                                        <NavLink to={`/detailBlog/${res.id}`}>
                                            <button className='btn-small black'>Detail</button>
                                        </NavLink>

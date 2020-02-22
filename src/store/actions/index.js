@@ -33,7 +33,7 @@ export const updatePostData = (id, blog) =>{
     console.log(blog, 'blog')
 
     return async (dispatch)=>{
-        await axios.put("https://jsonplaceholder.typicode.com/posts", id, blog)
+        await axios.put("https://jsonplaceholder.typicode.com/posts/"+ id, blog)
             .then(res => {
                 console.log(res, 'resssss')
                 dispatch({
