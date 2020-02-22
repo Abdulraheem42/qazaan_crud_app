@@ -1,6 +1,7 @@
 
 const initState = {
-    blogs: []
+    blogs: [],
+    isLoaded: true
 }
 
 const myReducer = (state = initState, action )=> {
@@ -8,29 +9,25 @@ const myReducer = (state = initState, action )=> {
     switch(action.type) {
         case 'GET_DATA':
             return{
-                blogs: action.payload
+                blogs: action.payload,
+                isLoaded: false
             };
 
         case 'POST_DATA':
             return{
                 ...state,
-                blogs: [action.payload, ...state.blogs]
+                blogs: [action.payload, ...state.blogs],
+                isLoaded: false
             };
 
-        // case 'DEL_DATA':
-        //     return{
-        //         blogs: state.blogs.filter((item) => item.id !== action.payload.id)
-        //     };
-
         case 'UPDATE_DATA':
-            console.log(action.payload, 'action.payload')
-            console.log(state, 'state')
             return{
                 ...state,
                 blogs: state.blogs.map(item =>{
                     if(item.id !== action.payload.id) return item
                     return {...state.blogs, ...action.payload}
-                })
+                }),
+                isLoaded: false
             };
 
         default:{

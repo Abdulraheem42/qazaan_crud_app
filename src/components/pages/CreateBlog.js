@@ -18,7 +18,7 @@ class CreateBlog extends Component {
 
     componentDidMount() {
         const { data } = this.props;
-        const doc_id = localStorage.getItem('doc_id');
+        const { doc_id } = this.state
         const edit = data.find(blog => {
             return blog.id == doc_id
         })
@@ -31,12 +31,14 @@ class CreateBlog extends Component {
         }
     }
 
+    // ================= handleChange ==============
     handleChange(event){
         this.setState({
             [event.target.name]: event.target.value
         })
     };
 
+    // ================  handleSubmit ==================
     handleSubmit(event){
         event.preventDefault();
         const blogData = {
@@ -53,6 +55,7 @@ class CreateBlog extends Component {
         this.props.history.push('/')
     };
 
+    // ============== handleUpdate ====================
     handleUpdate(event){
         event.preventDefault();
         const blogData = {

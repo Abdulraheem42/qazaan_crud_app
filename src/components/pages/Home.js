@@ -8,20 +8,29 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoaded: false
         }
     }
 
     componentDidMount() {
         this.props.dispatch(getData());
+
     }
 
     render() {
-        const { data, history } = this.props
+        const { data, isLoaded, history } = this.props
         return (
             <div>
                 <Menubar />
             <div className='container'>
-                <BlogList data={data} history={history}/>
+                {isLoaded ?
+                    <div className="progress">
+                        <div className="indeterminate">
+                        </div>
+                    </div>
+                    :
+                    <BlogList data={data} history={history}/>
+                }
             </div>
             </div>
         );
@@ -29,7 +38,8 @@ class Home extends Component {
 }
 const mapStateToProps = (state)=>{
     return{
-        data: state.blogs
+        data: state.blogs,
+        isLoaded: state.isLoaded
     }
 }
 export default connect(mapStateToProps, null)(Home);

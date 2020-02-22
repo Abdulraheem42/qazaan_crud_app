@@ -10,6 +10,7 @@ class BlogList extends Component {
         }
     }
 
+    // ================ handleEdit =================
     handleEdit(id){
         localStorage.setItem('doc_id',  id)
         this.props.history.push('/createblog')
@@ -19,7 +20,7 @@ class BlogList extends Component {
         const { data } = this.props
         return (
             <div className='row'>
-                {data.map(res => {
+                    {data.map(res => {
                     return(
                             <div className="col l12 s12 m12" key={res.id}>
                                 <div className="card">

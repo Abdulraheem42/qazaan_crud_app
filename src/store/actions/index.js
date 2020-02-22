@@ -14,34 +14,15 @@ export const postData = (add_blog) =>{
     }
 };
 
-// export const deleteData = (id)=>{
-//     return async (dispatch) => {
-//         console.log(id, 'id action');
-//         await axios.delete("https://jsonplaceholder.typicode.com/posts" + id)
-//             .then(res => {
-//                 dispatch({
-//                     type: 'DEL_DATA',
-//                     payload: res.data
-//                 });
-//                 console.log('Successfully delete')
-//             })
-//     }
-// };
-//
 export const updatePostData = (id, blog) =>{
-    console.log(id, 'id')
-    console.log(blog, 'blog')
-
     return async (dispatch)=>{
         await axios.put("https://jsonplaceholder.typicode.com/posts/"+ id, blog)
             .then(res => {
-                console.log(res, 'resssss')
                 dispatch({
                     type: 'UPDATE_DATA',
                     payload: res.data
                 });
                 console.log(res.data, 'res.data')
-
             })
     }
 };
