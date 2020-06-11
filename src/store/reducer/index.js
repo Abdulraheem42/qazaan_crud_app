@@ -21,12 +21,13 @@ const myReducer = (state = initState, action )=> {
             };
 
         case 'UPDATE_DATA':
-            return{
-                ...state,
-                blogs: state.blogs.map(item =>{
+            const update = state.blogs.map(item =>{
                     if(item.id !== action.payload.id) return item
                     return {...state.blogs, ...action.payload}
-                }),
+                });
+            return{
+                ...state,
+                blogs: update,
                 isLoaded: false
             };
 
